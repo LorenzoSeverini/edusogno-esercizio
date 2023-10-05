@@ -1,0 +1,176 @@
+/* import partials _variables */
+@import url('partials/_variables.css');
+
+/* --------------- */
+/*   Global CSS    */
+/* --------------- */
+::before,
+::after,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* ---------------------- */
+/*  General custome CSS  */
+/* ---------------------- */
+.error {
+    margin-top: 0.25rem;
+    background-color: var(--error-color);
+    padding: 0.5rem;
+    border-radius: 0.6875rem;
+}
+
+.success {
+    margin-top: 0.25rem;
+    background-color: var(--success-color);
+    padding: 0.5rem;
+    border-radius: 0.6875rem;
+}
+
+.btn {
+    border-radius: 0.6875rem;
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color:#185eebd5;
+}
+
+input {
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--tertiary-color);
+}
+
+/* -------- */
+/*  Layout  */
+/* -------- */
+
+/* HEADER */
+header {
+    height: 10rem;
+    padding: 2rem;
+    border-radius: 0.8125rem;
+    box-shadow: 0px 4px 18px -6px var(--secondary-color);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*   MAIN    */
+main {
+    height: calc(100vh - 10rem);
+    background-color: var( --quinary-color);
+    position: relative;
+}
+
+/* Wave svg */
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}    
+
+.wave {
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+#wave2 {
+    transform: rotate(9.289deg);
+}
+
+/* Main content */
+.content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Forms CSS */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 0.8125rem;
+    box-shadow: 0px 4px 18px -6px var(--tertiary-color);
+    background-color: var(--primary-color);
+    z-index: 1000;
+    margin-top: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25rem;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.form-data {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: underline;
+}
+
+.flex-password {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.show-password {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.custom-icon {
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
