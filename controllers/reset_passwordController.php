@@ -11,15 +11,9 @@ $token_hash = hash('sha256', $token);
 // query
 $sql = "SELECT * FROM users WHERE reset_token_hash = ? AND reset_token_expires_at > NOW()";
 
-echo $sql;
-
 $stmt = $conn->prepare($sql);
 
 $stmt->bind_param('s', $token_hash);
-
-// if ($stmt->execute()) {
-//     echo "inviata";
-// }
 
 $stmt->execute();
 
@@ -29,22 +23,44 @@ $user = $result->fetch_assoc();
 
 // check if token is valid
 if ($user === null) {
-    die("Token non valido");
+    header("Location: ../views/forget_password.php?error=Token non valido");
+    exit();
 }
 
 // check if token is expired
 if (strtotime($user['reset_token_expires_at']) <= time()) {
-    die("Token scaduto");
+    header("Location: ../views/forget_password.php?error=Token scaduto");
+    exit();
 }
 
-// check if password is valid
-if (strlen($_POST['password']) < 8) {
-    die("La password deve essere di almeno 8 caratteri");
+// password must be a uppercase letter
+if (!preg_match('/[A-Z]/', $_POST['password'])) {
+    header("Location: ../views/reset_password.php?error=La password deve contenere almeno una lettera maiuscola&token=$token");
+    exit();
+}
+
+// password must be a number
+if (!preg_match('/[0-9]/', $_POST['password'])) {
+    header("Location: ../views/reset_password.php?error=La password deve contenere almeno un numero&token=$token");
+    exit();
+}
+
+// password must be a special character
+if (!preg_match('/[^A-Za-z0-9]/', $_POST['password'])) {
+    header("Location: ../views/reset_password.php?error=La password deve contenere almeno un carattere speciale&token=$token");
+    exit();
 }
 
 // check if password and confirm password are the same
 if ($_POST['password'] !== $_POST['password_confirm']) {
-    die("Le password non coincidono");
+    header("Location: ../views/reset_password.php?error=Le password non coincidono&token=$token");
+    exit();
+}
+
+// check if password is valid
+if (strlen($_POST['password']) < 8) {
+    header("Location: ../views/reset_password.php?error=La password deve essere di almeno 8 caratteri&token=$token");
+    exit();
 }
 
 // hash password 
@@ -60,4 +76,5 @@ $stmt->bind_param('ss', $password_hash, $user['id']);
 $stmt->execute();
 
 // redirect to login page
-header('Location: ../public/index.php?success=Password-aggiornata-con-successo');
+header('Location: ../public/index.php?success=Password aggiornata con successo');
+exit();

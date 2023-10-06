@@ -20,14 +20,16 @@ $result = $stmt->get_result();
 
 $user = $result->fetch_assoc();
 
+// check if token is valid
 if ($user === null) {
-    die("Token non valido");
+    header("Location: ../views/forget_password.php?error=Token non valido");
+    exit();
 }
 
+// check if token is expired
 if (strtotime($user['reset_token_expires_at']) <= time()) {
-    die("Token scaduto");
-} else {
-    echo "Token valido";
+    header("Location: ../views/forget_password.php?error=Token scaduto");
+    exit();
 }
 
 ?>
@@ -39,6 +41,12 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset password</title>
+    <!-- css -->
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <!-- font family Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -69,13 +77,34 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
             <!-- form -->
             <form action="../controllers/reset_passwordController.php" method="post" class="form-container">
 
+                <!-- errors -->
+                <?php if (isset($_GET['error'])) { ?>
+                    <h3 class="error"><?php echo $_GET['error'] ?></h3>
+                <?php }  ?>
+
+                <!-- success -->
+                <?php if (isset($_GET['success'])) { ?>
+                    <h3 class="success"><?php echo $_GET['success'] ?></h3>
+                <?php }  ?>
+
+                <!-- hidden token -->
                 <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
 
-                <label for="password">New Password</label>
-                <input type="password" id="password" name="password">
+                <div class="form">
+                    <div class="form-data">
+                        <label for="password">Nuova password</label>
+                        <input type="password" id="password" name="password" placeholder="Nuova password">
+                    </div>
+                    <hr>
+                </div>
 
-                <label for="password_confirm">Confirm Password</label>
-                <input type="password" id="password_confirm" name="password_confirm">
+                <div class="form">
+                    <div class="form-data">
+                        <label for="password_confirm">Conferma Password</label>
+                        <input type="password" id="password_confirm" name="password_confirm" placeholder="Conferma la password">
+                    </div>
+                    <hr>
+                </div>
 
                 <button type="submit" class="btn">Reset password</button>
             </form>

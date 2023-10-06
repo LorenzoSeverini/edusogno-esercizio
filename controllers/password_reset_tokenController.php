@@ -1,7 +1,8 @@
 <?php
 // connection database
 include '../config/database.php';
-// daate time europe
+
+// date time europe
 date_default_timezone_set('Europe/Berlin');
 
 // parameters generation 
@@ -33,16 +34,18 @@ if ($stmt->execute()) {
             Clicca <a href="http://localhost:8888/edusogno/views/reset_password.php?token=$token">Qui</a> per impostare la nuova password.
         END;
 
+        // send email success or error
         try {
             $mail->send();
-            header('Location: ../views/forget_password.php?success=1');
+            header('Location: ../views/forget_password.php?success=Ti abbiamo inviato una email con il link per resettare la password');
+            exit();
         } catch (Exception $e) {
-            // header('Location: ../views/forget_password.php?error=1');
-            echo $e;
+            header('Location: ../views/forget_password.php?error=Purtroppo non è stato possibile inviare la email');
+            exit();
         }
     }
 } else {
-    echo "Error updating record: " . $conn->error;
+    // error 
+    header('Location: ../views/forget_password.php?error=Errore durante l\'invio della email');
+    exit();
 }
-
-// borf xygn lowi xghr

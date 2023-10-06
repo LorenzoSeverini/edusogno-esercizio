@@ -41,10 +41,17 @@
 
             <!-- log in -->
             <form action="../controllers/loginController.php" method="post" class="form-container">
+
                 <!-- errors -->
                 <?php if (isset($_GET['error'])) { ?>
                     <h3 class="error"><?php echo $_GET['error'] ?></h3>
                 <?php }  ?>
+
+                <!-- success -->
+                <?php if (isset($_GET['success'])) { ?>
+                    <h3 class="success"><?php echo $_GET['success'] ?></h3>
+                <?php }  ?>
+
                 <!-- form -->
                 <div class="form">
                     <div class="form-data">
@@ -60,7 +67,7 @@
 
                             <!-- show password -->
                             <div class="show-password">
-                                <i class="fas fa-eye custom-icon" class="showPasswordIcon" onclick="togglePasswordVisibility()"></i>
+                                <i class="fas fa-eye custom-icon" id="showPasswordIcon" onclick="togglePasswordVisibility()"></i>
                             </div>
                         </div>
                         <hr>

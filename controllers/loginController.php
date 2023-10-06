@@ -20,10 +20,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     // check if inputs are empty
     if (empty($email)) {
-        header("Location: ../public/index.php?error=Email is required");
+        header("Location: ../public/index.php?error=L\"email è obbligatoria");
         exit();
     } else if (empty($password)) {
-        header("Location: ../public/index.php?error=Password is required");
+        header("Location: ../public/index.php?error=La password è obbligatoria");
         exit();
     } else {
 
@@ -47,11 +47,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 header("Location: ../views/dashboard.php");
                 exit();
             } else {
-                header("Location: ../public/index.php?error=Incorrect email or password");
+                header("Location: ../public/index.php?error=Password o email errati");
                 exit();
             }
         } else {
-            header("Location: ../public/index.php?error=Incorrect email or password");
+            header("Location: ../public/index.php?error=Password o email errati");
             exit();
         }
     }

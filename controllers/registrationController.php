@@ -24,18 +24,30 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name'])
     // user data
     $user_data = '&name=' . $name . '&surname=' . $surname . '&email=' . $email;
 
-    // check if inputs are empty
+    // check if inputs are empty and check password strength ( min 8 characters, 1 uppercase, 1 number, 1 special character)
     if (empty($email)) {
-        header("Location: ../views/registration.php?error=Email is required&$user_data");
+        header("Location: ../views/registration.php?error=L\"email è obbligatoria&$user_data");
         exit();
     } else if (empty($password)) {
-        header("Location: ../views/registration.php?error=Password is required&$user_data");
+        header("Location: ../views/registration.php?error=La password è obbligatoria&$user_data");
+        exit();
+    } else if (strlen($password) < 8) {
+        header("Location: ../views/registration.php?error=La password deve contenere almeno 8 caratteri&$user_data");
+        exit();
+    } else if (!preg_match('/[A-Z]/', $password)) {
+        header("Location: ../views/registration.php?error=La password deve contenere almeno una lettera maiuscola&$user_data");
+        exit();
+    } else if (!preg_match('/[0-9]/', $password)) {
+        header("Location: ../views/registration.php?error=La password deve contenere almeno un numero&$user_data");
+        exit();
+    } else if (!preg_match('/[^A-Za-z0-9]/', $password)) {
+        header("Location: ../views/registration.php?error=La password deve contenere almeno un carattere speciale&$user_data");
         exit();
     } else if (empty($name)) {
-        header("Location: ../views/registration.php?error=Name is required&$user_data");
+        header("Location: ../views/registration.php?error=Il nome è obbligatoria&$user_data");
         exit();
     } else if (empty($surname)) {
-        header("Location: ../views/registration.php?error=Surname is required&$user_data");
+        header("Location: ../views/registration.php?error=Cognome è obbligatoria&$user_data");
         exit();
     } else {
 
@@ -49,7 +61,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name'])
 
         // check if user exists
         if (mysqli_num_rows($result) > 0) {
-            header("Location: ../views/registration.php?error=The email is already taken&$user_data");
+            header("Location: ../views/registration.php?error=Email già in uso&$user_data");
             exit();
         } else {
 
@@ -57,10 +69,10 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name'])
             $sql2 = "INSERT INTO users(name, surname, email, password) VALUES('$name', '$surname', '$email', '$password')";
             $result2 = mysqli_query($conn, $sql2);
             if ($result2) {
-                header("Location: ../views/registration.php?success=Your account has been created successfully");
+                header("Location: ../views/registration.php?success=Il tuo account è stato creato con successo");
                 exit();
             } else {
-                header("Location: ../views/registration.php?error=unknown error occurred&$user_data");
+                header("Location: ../views/registration.php?error=Errore durante la registrazione, riprovad&$user_data");
                 exit();
             }
         }

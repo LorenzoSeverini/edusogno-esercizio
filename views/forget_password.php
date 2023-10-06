@@ -38,6 +38,16 @@
         <div class="content">
             <h2>Link per reset password</h2>
 
+            <!-- error  -->
+            <?php if (isset($_GET['error'])) { ?>
+                <h3 class="error"><?php echo $_GET['error'] ?></h3>
+            <?php }  ?>
+
+            <!-- success  -->
+            <?php if (isset($_GET['success'])) { ?>
+                <h3 class="success"><?php echo $_GET['success'] ?></h3>
+            <?php }  ?>
+
             <!-- form -->
             <form action="../controllers/password_reset_tokenController.php" method="post" class="form-container">
                 <div class="form">

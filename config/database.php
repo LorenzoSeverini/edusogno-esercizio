@@ -10,8 +10,8 @@ $dbname = "edusogno";
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 
 // Check connection
-if (!$conn) {
-    echo "Connection failed: " . mysqli_connect_error();
-} else {
-    echo "Connected successfully";
-}
+// if (!$conn) {
+//     echo "Connection failed: " . mysqli_connect_error();
+// } else {
+//     echo "Connected successfully";
+// }
