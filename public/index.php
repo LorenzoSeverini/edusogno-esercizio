@@ -63,11 +63,11 @@
                     <div class="form-data">
                         <label for="password"><b>Inserisci la password</b></label>
                         <div class="flex-password">
-                            <input type="password" placeholder="scrivila qui" id="passwordInput" name="password">
+                            <input type="password" placeholder="scrivila qui" class="passwordInput" name="password">
 
                             <!-- show password -->
                             <div class="show-password">
-                                <i class="fas fa-eye custom-icon" id="showPasswordIcon" onclick="togglePasswordVisibility()"></i>
+                                <i class="fas fa-eye custom-icon showPasswordIcon" onclick="togglePasswordVisibility()"></i>
                             </div>
                         </div>
                         <hr>

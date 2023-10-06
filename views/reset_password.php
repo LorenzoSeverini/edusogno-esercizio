@@ -47,6 +47,8 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -77,38 +79,69 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
             <!-- form -->
             <form action="../controllers/reset_passwordController.php" method="post" class="form-container">
 
-                <!-- errors -->
-                <?php if (isset($_GET['error'])) { ?>
-                    <h3 class="error"><?php echo $_GET['error'] ?></h3>
-                <?php }  ?>
-
-                <!-- success -->
-                <?php if (isset($_GET['success'])) { ?>
-                    <h3 class="success"><?php echo $_GET['success'] ?></h3>
-                <?php }  ?>
-
-                <!-- hidden token -->
-                <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
-
                 <div class="form">
-                    <div class="form-data">
+                    <!-- errors -->
+                    <?php if (isset($_GET['error'])) { ?>
+                        <h3 class="error"><?php echo $_GET['error'] ?></h3>
+                    <?php }  ?>
+
+                    <!-- success -->
+                    <?php if (isset($_GET['success'])) { ?>
+                        <h3 class="success"><?php echo $_GET['success'] ?></h3>
+                    <?php }  ?>
+
+                    <!-- hidden token -->
+                    <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+
+                    <!-- password -->
+                    <!-- <div class="form-data">
                         <label for="password">Nuova password</label>
                         <input type="password" id="password" name="password" placeholder="Nuova password">
-                    </div>
-                    <hr>
-                </div>
+                        <hr>
+                    </div> -->
 
-                <div class="form">
                     <div class="form-data">
+                        <label for="passwordInput"><b>Nuova password</b></label>
+                        <div class="flex-password">
+                            <input type="password" placeholder="Nuova password" class="passwordInput" name="password">
+
+                            <!-- show password -->
+                            <div class="show-password">
+                                <i class="fas fa-eye custom-icon showPasswordIcon" onclick="togglePasswordVisibility()"></i>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+
+                    <!-- password confirm -->
+                    <div class="form-data">
+                        <label for="passwordInput"><b>Conferma la password</b></label>
+                        <div class="flex-password">
+                            <input type="password" placeholder="Conferma la password" class="passwordInput" name="password_confirm">
+
+                            <!-- show password -->
+                            <div class="show-password">
+                                <i class="fas fa-eye custom-icon showPasswordIcon" onclick="togglePasswordVisibility()"></i>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <!-- <div class="form-data">
                         <label for="password_confirm">Conferma Password</label>
                         <input type="password" id="password_confirm" name="password_confirm" placeholder="Conferma la password">
-                    </div>
-                    <hr>
-                </div>
+                        <hr>
+                    </div> -->
 
-                <button type="submit" class="btn">Reset password</button>
+                    <button type="submit" class="btn">Reset password</button>
+                </div>
             </form>
         </div>
+    </main>
+
+    <!-- script  -->
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>
