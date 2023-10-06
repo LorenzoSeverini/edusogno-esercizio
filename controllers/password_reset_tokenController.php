@@ -1,7 +1,6 @@
 <?php
 // connection database
 include '../config/database.php';
-
 // date time europe
 date_default_timezone_set('Europe/Berlin');
 

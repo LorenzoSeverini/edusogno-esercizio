@@ -44,8 +44,22 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 $_SESSION['surname'] = $row['surname'];
                 $_SESSION['id'] = $row['id'];
 
-                header("Location: ../views/dashboard.php");
-                exit();
+                // Query to check admin privileges based on email
+                $admin_privileges_sql = "SELECT user_id FROM admin_privileges WHERE user_id = " . $row['id'];
+                $admin_privileges_result = mysqli_query($conn, $admin_privileges_sql);
+
+                if (mysqli_num_rows($admin_privileges_result) === 1) {
+                    // User has admin privileges, redirect to the admin dashboard
+                    header("Location: ../views/admin/admin_dashboard.php");
+                    exit();
+                } else {
+                    // User is not an admin, redirect to the regular user dashboard
+                    header("Location: ../views/user/dashboard.php");
+                    exit();
+                }
+
+                // header("Location: ../views/dashboard.php");
+                // exit();
             } else {
                 header("Location: ../public/index.php?error=Password o email errati");
                 exit();
