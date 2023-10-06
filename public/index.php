@@ -54,17 +54,18 @@
 
                 <!-- form -->
                 <div class="form">
+                    <!-- email -->
                     <div class="form-data">
                         <label for="email"><b>Inserisci l'email</b></label>
                         <input type="text" placeholder="Inserisci Email" name="email" autocomplete="email">
                         <hr>
                     </div>
 
+                    <!-- password -->
                     <div class="form-data">
                         <label for="password"><b>Inserisci la password</b></label>
                         <div class="flex-password">
                             <input type="password" placeholder="scrivila qui" class="passwordInput" name="password">
-
                             <!-- show password -->
                             <div class="show-password">
                                 <i class="fas fa-eye custom-icon showPasswordIcon" onclick="togglePasswordVisibility()"></i>
@@ -73,12 +74,14 @@
                         <hr>
                     </div>
 
+                    <!-- button -->
                     <button type="submit" class="btn">Accedi</button>
 
-                    <div class="form-link">
+                    <!-- link -->
+                    <nav class="form-link">
                         <div>Non hai ancora un profilo? <a href="../views/registration.php">Registrati</a></div>
                         <div>Hai dimenticato la password? <a href="../views/forget_password.php">Reset</a></div>
-                    </div>
+                    </nav>
                 </div>
             </form>
         </div>

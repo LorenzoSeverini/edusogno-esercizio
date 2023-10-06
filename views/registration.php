@@ -54,6 +54,7 @@
 
                 <!-- form -->
                 <div class="form">
+                    <!-- name -->
                     <div class="form-data">
                         <label for="name"><b>Inserisci il tuo nome</b></label>
                         <?php if (isset($_GET['name'])) { ?>
@@ -64,6 +65,7 @@
                         <hr>
                     </div>
 
+                    <!-- surname -->
                     <div class="form-data">
                         <label for="surname"><b>Inserisci il tuo cognome</b></label>
                         <?php if (isset($_GET['surname'])) { ?>
@@ -74,6 +76,7 @@
                         <hr>
                     </div>
 
+                    <!-- email -->
                     <div class="form-data">
                         <label for="email"><b>Inserisci l'email</b></label>
                         <?php if (isset($_GET['email'])) { ?>
@@ -84,6 +87,7 @@
                         <hr>
                     </div>
 
+                    <!-- password -->
                     <div class="form-data">
                         <label for="passwordInput"><b>Inserisci la password</b></label>
                         <div class="flex-password">
@@ -97,11 +101,13 @@
                         <hr>
                     </div>
 
+                    <!-- button -->
                     <button type="submit" class="btn">Registrati</button>
 
-                    <div class="form-link">
+                    <!-- link -->
+                    <nav class="form-link">
                         <p>Hai gia un account? <a href="../public/index.php">Accedi</a>.</p>
-                    </div>
+                    </nav>
                 </div>
             </form>
         </div>

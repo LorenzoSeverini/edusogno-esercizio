@@ -50,6 +50,7 @@
 
             <!-- form -->
             <form action="../controllers/password_reset_tokenController.php" method="post" class="form-container">
+                <!-- email -->
                 <div class="form">
                     <div class="form-data">
                         <label for="email"><b>Inserisci l'email</b></label>
@@ -57,11 +58,13 @@
                         <hr>
                     </div>
 
+                    <!-- button -->
                     <button type="submit" class="btn">Invia Link</button>
 
-                    <div class="form-link">
+                    <!-- link -->
+                    <nav class="form-link">
                         <span>Non hai ancora un profilo? <a href="../views/registration.php">Registrati</a></span>
-                    </div>
+                    </nav>
                 </div>
             </form>
         </div>

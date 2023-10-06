@@ -94,17 +94,10 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
                     <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
 
                     <!-- password -->
-                    <!-- <div class="form-data">
-                        <label for="password">Nuova password</label>
-                        <input type="password" id="password" name="password" placeholder="Nuova password">
-                        <hr>
-                    </div> -->
-
                     <div class="form-data">
                         <label for="passwordInput"><b>Nuova password</b></label>
                         <div class="flex-password">
                             <input type="password" placeholder="Nuova password" class="passwordInput" name="password">
-
                             <!-- show password -->
                             <div class="show-password">
                                 <i class="fas fa-eye custom-icon showPasswordIcon" onclick="togglePasswordVisibility()"></i>
@@ -112,14 +105,12 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
                         </div>
                         <hr>
                     </div>
-
 
                     <!-- password confirm -->
                     <div class="form-data">
                         <label for="passwordInput"><b>Conferma la password</b></label>
                         <div class="flex-password">
                             <input type="password" placeholder="Conferma la password" class="passwordInput" name="password_confirm">
-
                             <!-- show password -->
                             <div class="show-password">
                                 <i class="fas fa-eye custom-icon showPasswordIcon" onclick="togglePasswordVisibility()"></i>
@@ -128,13 +119,14 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
                         <hr>
                     </div>
 
-                    <!-- <div class="form-data">
-                        <label for="password_confirm">Conferma Password</label>
-                        <input type="password" id="password_confirm" name="password_confirm" placeholder="Conferma la password">
-                        <hr>
-                    </div> -->
-
+                    <!-- button -->
                     <button type="submit" class="btn">Reset password</button>
+
+                    <!-- link -->
+                    <nav class="form-link">
+                        <a href="../public/index.php">Accedi</a>
+                        <a href="../views/register.php">Registrati</a>
+                    </nav>
                 </div>
             </form>
         </div>
