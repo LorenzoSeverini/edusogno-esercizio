@@ -69,7 +69,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name'])
             $sql2 = "INSERT INTO users(name, surname, email, password) VALUES('$name', '$surname', '$email', '$password')";
             $result2 = mysqli_query($conn, $sql2);
             if ($result2) {
-                header("Location: ../views/registration.php?success=Il tuo account è stato creato con successo");
+                header("Location: ../public/index.php?success=Il tuo account è stato creato con successo");
                 exit();
             } else {
                 header("Location: ../views/registration.php?error=Errore durante la registrazione, riprovad&$user_data");
