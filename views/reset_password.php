@@ -141,8 +141,8 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
 
                     <!-- link -->
                     <nav class="form-link">
-                        <a href="../public/index.php">Accedi</a>
-                        <a href="../views/register.php">Registrati</a>
+                        <span>Non hai ancora un profilo? <a href="../views/registration.php">Registrati</a></span>
+                        <span>Hai già un profilo? <a href="../public/index.php">Accedi</a></span>
                     </nav>
                 </div>
             </form>

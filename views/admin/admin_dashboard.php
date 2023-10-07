@@ -120,7 +120,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
             <!-- main content -->
             <div class="content">
                 <h1>Admin Dashboard</h1>
-                <h2>Ciao <?php echo  $_SESSION['name'] . " " . $_SESSION['surname'] ?> ecco i tuoi eventi</h2>
+                <h2>Ciao <?php echo  $_SESSION['name'] . " " . $_SESSION['surname'] ?> ecco tutti gli eventi</h2>
 
                 <!-- success message -->
                 <?php if (isset($_GET['success'])) : ?>

@@ -81,6 +81,7 @@
                     <!-- link -->
                     <nav class="form-link">
                         <span>Non hai ancora un profilo? <a href="../views/registration.php">Registrati</a></span>
+                        <span>Hai già un profilo? <a href="../public/index.php">Accedi</a></span>
                     </nav>
                 </div>
             </form>
