@@ -11,6 +11,14 @@ Unique ('reset_token_hash');
 PRIMARY KEY (id)
 );
 
+-- insert users
+INSERT INTO users (name , surname, email, password) VALUES
+    ('Marco', 'Rossi', 'ulysses200915@varen8.com', 'Edusogno123#'),
+    ('Filippo', 'D’Amelio', 'qmonkey14@falixiao.com', 'Edusogno?123'),
+    ('Gian Luca', 'Carta', 'mavbafpcmq@hitbase.net', 'EdusognoCiao1@'),
+    ('Stella', 'De Grandis', 'dgipolga@edume.me', 'EdusognoGia1#');
+    ('Admin', 'Admin', 'admin@esempio.com', 'Admin123#');
+
 -- table for events
 CREATE TABLE IF NOT EXISTS events (
 id int NOT NULL AUTO_INCREMENT,
@@ -21,7 +29,11 @@ admin_access tinyint(1) DEFAULT 1,
 PRIMARY KEY (id)
 );
 
-INSERT INTO `events`(`attendees`, `event_name`, `event_date`) VALUES ('ulysses200915@varen8.com,qmonkey14@falixiao.com,mavbafpcmq@hitbase.net','Test Edusogno 1', '2022-10-13 14:00'), ('dgipolga@edume.me,qmonkey14@falixiao.com,mavbafpcmq@hitbase.net','Test Edusogno 2', '2022-10-15 19:00'), ('dgipolga@edume.me,ulysses200915@varen8.com,mavbafpcmq@hitbase.net','Test Edusogno 2', '2022-10-15 19:00');
+-- insert events
+INSERT INTO `events`(`attendees`, `event_name`, `event_date`, `admin_access`) VALUES 
+    ('ulysses200915@varen8.com,qmonkey14@falixiao.com,mavbafpcmq@hitbase.net','Test Edusogno 1', '2022-10-13 14:00', 1), 
+    ('dgipolga@edume.me,qmonkey14@falixiao.com,mavbafpcmq@hitbase.net','Test Edusogno 2', '2022-10-15 19:00', 1), 
+    ('dgipolga@edume.me,ulysses200915@varen8.com,mavbafpcmq@hitbase.net','Test Edusogno 2', '2022-10-15 19:00', 1);
 
 -- table for admins_privileges
 CREATE TABLE admin_privileges (
@@ -29,3 +41,7 @@ CREATE TABLE admin_privileges (
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+-- insert admins_privileges
+INSERT INTO admin_privileges (user_id) VALUES
+    (5),
