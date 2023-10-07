@@ -17,6 +17,7 @@ id int NOT NULL AUTO_INCREMENT,
 attendees text,
 event_name varchar(255),
 event_date datetime,
+admin_access tinyint(1) DEFAULT 1,
 PRIMARY KEY (id)
 );
 

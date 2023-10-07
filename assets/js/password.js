@@ -1,4 +1,6 @@
+// ------------------------------------------------------------
 // function to show password input field
+// ------------------------------------------------------------
 function togglePasswordVisibility() {
     const passwordInputs = document.querySelectorAll(".passwordInput");
     const showPasswordIcons = document.querySelectorAll(".showPasswordIcon");

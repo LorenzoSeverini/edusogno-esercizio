@@ -4,9 +4,10 @@
 
 .events-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 3rem;
     padding: 2rem;
-    margin-top: 2rem;
+    margin: 2rem auto;
 }
 
 .event {
@@ -23,7 +24,10 @@
 
 .btn-container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 2rem;
+
 }
 
 .btn-logout {
@@ -35,4 +39,22 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     z-index: 1000;
+}
+
+.btn-delete {
+    background-color: var(--error-color);
+    color: var(--tertiary-color);
+    border-radius: 0.6875rem;
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.button-container-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }

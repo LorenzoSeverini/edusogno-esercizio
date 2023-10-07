@@ -40,6 +40,9 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font icon -->
+    <link rel="icon" href="../assets/images/logo.svg" type="image/svg" />
+    <!-- title -->
     <title>Reset password</title>
     <!-- css -->
     <link rel="stylesheet" href="../assets/styles/style.css">
@@ -77,7 +80,7 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
             <h2>Reset password</h2>
 
             <!-- form -->
-            <form action="../controllers/reset_passwordController.php" method="post" class="form-container">
+            <form action="../controllers/ResetPasswordController.php" method="post" class="form-container">
 
                 <div class="form">
                     <!-- errors -->
@@ -133,7 +136,7 @@ if (strtotime($user['reset_token_expires_at']) <= time()) {
     </main>
 
     <!-- script  -->
-    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/password.js"></script>
 </body>
 
 </html>

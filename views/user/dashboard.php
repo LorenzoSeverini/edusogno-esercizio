@@ -28,6 +28,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- font icon -->
+        <link rel="icon" href="../assets/images/logo.svg" type="image/svg" />
+        <!-- title -->
         <title>Dashboard</title>
         <!-- css -->
         <link rel="stylesheet" href="../../assets/styles/style.css">
@@ -78,7 +81,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                 <?php endif; ?>
 
                 <!-- logout -->
-                <button class="btn"><a href="../../controllers/logoutController.php">Logout</a></button>
+                <button class="btn"><a href="../../controllers/LogoutController.php">Logout</a></button>
             </div>
         </main>
     </body>

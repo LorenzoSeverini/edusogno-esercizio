@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font icon -->
+    <link rel="icon" href="../assets/images/logo.svg" type="image/svg" />
+    <!-- title -->
     <title>Link reset password</title>
     <!-- css -->
     <link rel="stylesheet" href="../assets/styles/style.css">
@@ -49,7 +52,7 @@
             <?php }  ?>
 
             <!-- form -->
-            <form action="../controllers/password_reset_tokenController.php" method="post" class="form-container">
+            <form action="../controllers/PasswordResetTokenController.php" method="post" class="form-container">
                 <!-- email -->
                 <div class="form">
                     <div class="form-data">

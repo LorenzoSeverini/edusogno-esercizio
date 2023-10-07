@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font icon -->
+    <link rel="icon" href="../assets/images/logo.svg" type="image/svg" />
+    <!-- title -->
     <title>Registrazione</title>
     <!-- css -->
     <link rel="stylesheet" href="../assets/styles/style.css">
@@ -40,7 +43,7 @@
         <div class="content">
             <h2>Crea il tuo account</h2>
             <!-- form -->
-            <form action="../controllers/registrationController.php" method="post" class="form-container">
+            <form action="../controllers/RegistrationController.php" method="post" class="form-container">
 
                 <!-- errors -->
                 <?php if (isset($_GET['error'])) { ?>
@@ -114,7 +117,7 @@
     </main>
 
     <!-- js script  -->
-    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/password.js"></script>
 </body>
 
 </html>

@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font icon -->
+    <link rel="icon" href="../assets/images/logo.svg" type="image/svg" />
+    <!-- title -->
     <title>Edusogno</title>
     <!-- css -->
     <link rel="stylesheet" href="../assets/styles/style.css">
@@ -23,12 +26,15 @@
     </header>
     <!-- main -->
     <main>
+
         <!-- svg -->
+
+        <!-- wave -->
         <div class="wave-container">
             <svg id="wave1" class="wave">
                 <image xlink:href="../assets/images/main/wave-1.svg" width="100%" length="auto" />
             </svg>
-            <svg id="wave2" class="wave">
+            <svg class="wave">
                 <image xlink:href="../assets/images/main/wave-2.svg" width="100%" length="auto" />
             </svg>
             <svg id="wave3" class="wave">
@@ -40,7 +46,7 @@
             <h2>Hai gia un account?</h2>
 
             <!-- log in -->
-            <form action="../controllers/loginController.php" method="post" class="form-container">
+            <form action="../controllers/LoginController.php" method="post" class="form-container">
 
                 <!-- errors -->
                 <?php if (isset($_GET['error'])) { ?>
@@ -87,7 +93,7 @@
         </div>
     </main>
 
-    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/password.js"></script>
 </body>
 
 </html>

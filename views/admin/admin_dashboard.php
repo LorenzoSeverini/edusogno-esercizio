@@ -19,6 +19,47 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
 
     // Get all events of the user logged in
     $events = $eventController->getAllEvents();
+
+    // add new event 
+    if (isset($_POST['addEvent'])) {
+        // get the data from the form
+        $event_name = $_POST['event_name'];
+        $attendees = $_POST['attendees'];
+        $event_date = $_POST['event_date'];
+
+        // add the event
+        $eventController->addEvent($event_name, $attendees, $event_date);
+    }
+
+    // delete event
+    if (isset($_POST['deleteEvent'])) {
+        // get the id of the event
+        $id = $_POST['id'];
+
+        // delete the event
+        $eventController->deleteEvent($id);
+    }
+
+    // edit event 
+    if (isset($_POST['editEvent'])) {
+        // get the id of the event
+        $id = $_POST['id'];
+
+        // edit the event
+        $eventController->editEvent($id);
+    }
+
+    // update the event
+    if (isset($_POST['updateEvent'])) {
+        $id = $_POST['id'];
+        $event_name = $_POST['event_name'];
+        $attendees = $_POST['attendees'];
+        $event_date = $_POST['event_date'];
+
+        // update the event
+        $eventController->updateEvent($id, $event_name, $attendees, $event_date);
+    }
+
 ?>
 
     <!DOCTYPE html>
@@ -27,6 +68,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- font icon -->
+        <link rel="icon" href="../assets/images/logo.svg" type="image/svg" />
+        <!-- title -->
         <title>Dashboard</title>
         <!-- css -->
         <link rel="stylesheet" href="../../assets/styles/style.css">
@@ -62,14 +106,38 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                 <h1>Admin Dashboard</h1>
                 <h2>Ciao <?php echo  $_SESSION['name'] . " " . $_SESSION['surname'] ?> ecco i tuoi eventi</h2>
 
+                <!-- success message -->
+                <?php if (isset($_GET['success'])) : ?>
+                    <p class="success"><?php echo $_GET['success']; ?></p>
+                <?php endif; ?>
+
+                <!-- error -->
+                <?php if (isset($_GET['error'])) : ?>
+                    <p class="error"><?php echo $_GET['error']; ?></p>
+                <?php endif; ?>
+
                 <!-- show all events of the user logged in -->
                 <?php if (!empty($events)) : ?>
                     <div class="events-container">
+                        <!-- all events -->
                         <?php foreach ($events as $event) : ?>
+                            <!-- card event -->
                             <div class="event">
                                 <h3><?php echo $event->event_name; ?></h3>
                                 <p><?php echo $event->event_date; ?></p>
                                 <button class="btn">Join</button>
+
+                                <!-- button container delete e edit-->
+                                <div class="button-container-event">
+                                    <!-- delete button -->
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $event->id; ?>">
+                                        <button class="btn-delete" type="submit" name="deleteEvent">Elimina</button>
+                                    </form>
+
+                                    <!-- edit button -->
+                                    <button class="btn" type="button" name="editEvent" onclick="showEditForm(<?php echo $event->id; ?>)">Modifica</button>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -77,10 +145,90 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                     <p>Non hai ancora creato eventi</p>
                 <?php endif; ?>
 
-                <!-- logout -->
-                <button class="btn"><a href="../../controllers/logoutController.php">Logout</a></button>
+                <!-- button container add event and logout-->
+                <div class="button-container">
+                    <!-- button to show the form -->
+                    <button class="btn" id="add-event-btn">Aggiungi evento</button>
+                    <!-- logout -->
+                    <button class="btn"><a href="../../controllers/LogoutController.php">Logout</a></button>
+                </div>
+
+                <!-- add new event form -->
+                <form class="form-container" action="" method="POST" id="add-event-form" style="display: none;">
+                    <h3>Aggiungi un nuovo evento</h3>
+
+                    <!-- error message -->
+                    <?php if (isset($_GET['error'])) : ?>
+                        <p class="error"><?php echo $_GET['error']; ?></p>
+                    <?php endif; ?>
+
+                    <!-- form data -->
+                    <div class="form">
+                        <div class="form-data">
+                            <label for="event_name">Nome evento</label>
+                            <input type="text" name="event_name" id="event_name" placeholder="Nome evento">
+                            <hr>
+                        </div>
+                        <div class="form-data">
+                            <label for="attendees">Partecipanti</label>
+                            <input type="text" name="attendees" id="attendees" placeholder="Partecipanti">
+                            <hr>
+                        </div>
+                        <div class="form-data">
+                            <label for="event_date">Data evento</label>
+                            <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento">
+                            <hr>
+                        </div>
+
+                        <!-- button -->
+                        <button class="btn" type="submit" name="addEvent" id="addEventButton">Aggiungi evento</button>
+                    </div>
+                </form>
+                <!------------------>
+
+                <!-- edit form -->
+                <form class="form-container edit-event-form" action="" method="POST" id="edit-event-form-<?php echo $event->id; ?>" style="display: none;">
+
+                    <input type="hidden" name="id" value="<?php echo $event->id; ?>">
+
+                    <h3>Modifica evento</h3>
+
+                    <!-- error message -->
+                    <?php if (isset($_GET['error'])) : ?>
+                        <p class="error"><?php echo $_GET['error']; ?></p>
+                    <?php endif; ?>
+
+                    <!-- form data -->
+                    <div class="form">
+                        <div class="form-data">
+                            <label for="event_name">Nome evento</label>
+                            <!-- <input type="text" name="event_name" id="event_name" placeholder="Nome evento"> -->
+                            <input type="text" name="event_name" id="event_name" placeholder="Nome evento" value="<?php echo $event->event_name; ?>">
+                            <hr>
+                        </div>
+                        <div class="form-data">
+                            <label for="attendees">Partecipanti</label>
+                            <!-- <input type="text" name="attendees" id="attendees" placeholder="Partecipanti"> -->
+                            <input type="text" name="attendees" id="attendees" placeholder="Partecipanti" value="<?php echo $event->attendees; ?>">
+                            <hr>
+                        </div>
+                        <div class="form-data">
+                            <label for="event_date">Data evento</label>
+                            <!-- <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento"> -->
+                            <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento" value="<?php echo $event->event_date; ?>">
+                            <hr>
+                        </div>
+
+                        <!-- button -->
+                        <button class="btn" type="submit" name="updateEvent" id="updateEvent">Modifica evento</button>
+                    </div>
+                </form>
+                <!------------------>
             </div>
         </main>
+
+        <!-- js scritp -->
+        <script src="../../assets/js/admin_dasboard.js"></script>
     </body>
 
     </html>
