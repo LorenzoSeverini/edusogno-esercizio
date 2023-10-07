@@ -185,44 +185,45 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                     </div>
                 </form>
                 <!------------------>
+                <?php foreach ($events as $event) : ?>
+                    <!-- edit form -->
+                    <form class="form-container edit-event-form" action="" method="POST" id="edit-event-form-<?php echo $event->id; ?>" style="display: none;">
 
-                <!-- edit form -->
-                <form class="form-container edit-event-form" action="" method="POST" id="edit-event-form-<?php echo $event->id; ?>" style="display: none;">
+                        <input type="hidden" name="id" value="<?php echo $event->id; ?>">
 
-                    <input type="hidden" name="id" value="<?php echo $event->id; ?>">
+                        <h3>Modifica evento</h3>
 
-                    <h3>Modifica evento</h3>
+                        <!-- error message -->
+                        <?php if (isset($_GET['error'])) : ?>
+                            <p class="error"><?php echo $_GET['error']; ?></p>
+                        <?php endif; ?>
 
-                    <!-- error message -->
-                    <?php if (isset($_GET['error'])) : ?>
-                        <p class="error"><?php echo $_GET['error']; ?></p>
-                    <?php endif; ?>
+                        <!-- form data -->
+                        <div class="form">
+                            <div class="form-data">
+                                <label for="event_name">Nome evento</label>
+                                <!-- <input type="text" name="event_name" id="event_name" placeholder="Nome evento"> -->
+                                <input type="text" name="event_name" id="event_name" placeholder="Nome evento" value="<?php echo $event->event_name; ?>">
+                                <hr>
+                            </div>
+                            <div class="form-data">
+                                <label for="attendees">Partecipanti</label>
+                                <!-- <input type="text" name="attendees" id="attendees" placeholder="Partecipanti"> -->
+                                <input type="text" name="attendees" id="attendees" placeholder="Partecipanti" value="<?php echo $event->attendees; ?>">
+                                <hr>
+                            </div>
+                            <div class="form-data">
+                                <label for="event_date">Data evento</label>
+                                <!-- <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento"> -->
+                                <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento" value="<?php echo $event->event_date; ?>">
+                                <hr>
+                            </div>
 
-                    <!-- form data -->
-                    <div class="form">
-                        <div class="form-data">
-                            <label for="event_name">Nome evento</label>
-                            <!-- <input type="text" name="event_name" id="event_name" placeholder="Nome evento"> -->
-                            <input type="text" name="event_name" id="event_name" placeholder="Nome evento" value="<?php echo $event->event_name; ?>">
-                            <hr>
+                            <!-- button -->
+                            <button class="btn" type="submit" name="updateEvent" id="updateEvent">Modifica evento</button>
                         </div>
-                        <div class="form-data">
-                            <label for="attendees">Partecipanti</label>
-                            <!-- <input type="text" name="attendees" id="attendees" placeholder="Partecipanti"> -->
-                            <input type="text" name="attendees" id="attendees" placeholder="Partecipanti" value="<?php echo $event->attendees; ?>">
-                            <hr>
-                        </div>
-                        <div class="form-data">
-                            <label for="event_date">Data evento</label>
-                            <!-- <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento"> -->
-                            <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento" value="<?php echo $event->event_date; ?>">
-                            <hr>
-                        </div>
-
-                        <!-- button -->
-                        <button class="btn" type="submit" name="updateEvent" id="updateEvent">Modifica evento</button>
-                    </div>
-                </form>
+                    </form>
+                <?php endforeach; ?>
                 <!------------------>
             </div>
         </main>
