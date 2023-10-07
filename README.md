@@ -6,6 +6,10 @@
 
 Link al file: [Documentazione.md](Documentazione.md)
 
+### File brief del progetto
+
+Link al file: [Task.pdf](Task-for-Edusogno.pdf)
+
 ## Funzione generale del progetto:
 
 ### User
