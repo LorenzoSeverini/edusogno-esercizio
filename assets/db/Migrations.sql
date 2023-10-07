@@ -25,15 +25,16 @@ id int NOT NULL AUTO_INCREMENT,
 attendees text,
 event_name varchar(255),
 event_date datetime,
+description text DEFAULT NULL,
 admin_access tinyint(1) DEFAULT 1,
 PRIMARY KEY (id)
 );
 
 -- insert events
-INSERT INTO `events`(`attendees`, `event_name`, `event_date`, `admin_access`) VALUES 
-    ('ulysses200915@varen8.com,qmonkey14@falixiao.com,mavbafpcmq@hitbase.net','Test Edusogno 1', '2022-10-13 14:00', 1), 
-    ('dgipolga@edume.me,qmonkey14@falixiao.com,mavbafpcmq@hitbase.net','Test Edusogno 2', '2022-10-15 19:00', 1), 
-    ('dgipolga@edume.me,ulysses200915@varen8.com,mavbafpcmq@hitbase.net','Test Edusogno 2', '2022-10-15 19:00', 1);
+INSERT INTO `events`(`attendees`, `event_name`, `event_date`, `description` `admin_access`) VALUES 
+    ('ulysses200915@varen8.com', 'Test Edusogno 1', '2022-10-13 14:00', 'Descrizione Test tecnico numero 1!', 1), 
+    ('dgipolga@edume.me', 'Test Edusogno 2', '2022-10-15 19:00', 'Descrizione Test tecnico numero 2!', 1), 
+    ('dgipolga@edume.me', 'Test Edusogno 3', '2022-10-15 19:00', 'Descrizione Test tecnico numero 3!', 1);
 
 -- table for admins_privileges
 CREATE TABLE admin_privileges (

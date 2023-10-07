@@ -19,8 +19,8 @@ class UserEventController
         // get user email from session
         $userEmail = $_SESSION['email'];
 
-        // SQL query to retrieve user's events Or for THE ADMIN to retrieve all events 
-        $sql = "SELECT event_name, event_date FROM events WHERE attendees LIKE '%" . $userEmail . "%'  OR admin_access = 1"; // admin_access = 1 means that the admin has access to the event
+        // SQL query to retrieve user's events 
+        $sql = "SELECT event_name, description, event_date FROM events WHERE attendees LIKE '%" . $userEmail . "%'";
 
         // result
         $result = $this->conn->query($sql);
@@ -32,7 +32,7 @@ class UserEventController
 
             // store events in the array
             while ($row = $result->fetch_assoc()) {
-                $events[] = new Event(null, $row['event_name'], null, $row['event_date']);
+                $events[] = new Event(null, $row['event_name'], null, $row['description'], $row['event_date']);
             }
 
             // return the array

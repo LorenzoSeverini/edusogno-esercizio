@@ -25,10 +25,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
         // get the data from the form
         $event_name = $_POST['event_name'];
         $attendees = $_POST['attendees'];
+        $description = $_POST['description'];
         $event_date = $_POST['event_date'];
 
         // add the event
-        $eventController->addEvent($event_name, $attendees, $event_date);
+        $eventController->addEvent($event_name, $attendees, $description, $event_date);
     }
 
     // delete event
@@ -54,10 +55,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
         $id = $_POST['id'];
         $event_name = $_POST['event_name'];
         $attendees = $_POST['attendees'];
+        $description = $_POST['description'];
         $event_date = $_POST['event_date'];
 
         // update the event
-        $eventController->updateEvent($id, $event_name, $attendees, $event_date);
+        $eventController->updateEvent($id, $event_name, $attendees, $description, $event_date);
     }
 
 ?>
@@ -124,6 +126,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                             <!-- card event -->
                             <div class="event">
                                 <h3><?php echo $event->event_name; ?></h3>
+                                <p><?php echo $event->description; ?></p>
                                 <p><?php echo $event->event_date; ?></p>
                                 <button class="btn">Join</button>
 
@@ -142,7 +145,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                         <?php endforeach; ?>
                     </div>
                 <?php else : ?>
-                    <p>Non hai ancora creato eventi</p>
+                    <h3>Non hai ancora creato eventi</h3>
                 <?php endif; ?>
 
                 <!-- button container add event and logout-->
@@ -164,16 +167,27 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
 
                     <!-- form data -->
                     <div class="form">
+                        <!-- event name -->
                         <div class="form-data">
                             <label for="event_name">Nome evento</label>
                             <input type="text" name="event_name" id="event_name" placeholder="Nome evento">
                             <hr>
                         </div>
+
+                        <!-- attendees -->
                         <div class="form-data">
                             <label for="attendees">Partecipanti</label>
                             <input type="text" name="attendees" id="attendees" placeholder="Partecipanti">
                             <hr>
                         </div>
+
+                        <!-- description -->
+                        <div class="form-data">
+                            <label for="description">Descrizione</label>
+                            <input type="text" name="description" id="description" placeholder="Descrizione">
+                            <hr>
+                        </div>
+                        <!-- event date -->
                         <div class="form-data">
                             <label for="event_date">Data evento</label>
                             <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento">
@@ -189,6 +203,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                     <!-- edit form -->
                     <form class="form-container edit-event-form" action="" method="POST" id="edit-event-form-<?php echo $event->id; ?>" style="display: none;">
 
+                        <!-- hidden id -->
                         <input type="hidden" name="id" value="<?php echo $event->id; ?>">
 
                         <h3>Modifica evento</h3>
@@ -200,21 +215,30 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
 
                         <!-- form data -->
                         <div class="form">
+                            <!-- event name -->
                             <div class="form-data">
                                 <label for="event_name">Nome evento</label>
-                                <!-- <input type="text" name="event_name" id="event_name" placeholder="Nome evento"> -->
                                 <input type="text" name="event_name" id="event_name" placeholder="Nome evento" value="<?php echo $event->event_name; ?>">
                                 <hr>
                             </div>
+
+                            <!-- attendees -->
                             <div class="form-data">
                                 <label for="attendees">Partecipanti</label>
-                                <!-- <input type="text" name="attendees" id="attendees" placeholder="Partecipanti"> -->
                                 <input type="text" name="attendees" id="attendees" placeholder="Partecipanti" value="<?php echo $event->attendees; ?>">
                                 <hr>
                             </div>
+
+                            <!-- description -->
+                            <div class="form-data">
+                                <label for="description">Descrizione</label>
+                                <input type="text" name="description" id="description" placeholder="Descrizione" value="<?php echo $event->description; ?>">
+                                <hr>
+                            </div>
+
+                            <!-- event date -->
                             <div class="form-data">
                                 <label for="event_date">Data evento</label>
-                                <!-- <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento"> -->
                                 <input type="datetime-local" name="event_date" id="event_date" placeholder="Data evento" value="<?php echo $event->event_date; ?>">
                                 <hr>
                             </div>

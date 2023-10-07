@@ -22,13 +22,22 @@
 }
 
 /* --------------- */
-
-.ellipse-container {
+/* SVG at the bottom over the waves */
+.bottom-svg {
     position: absolute;
-    top: 50%;
-    right: 80%;
-    transform: translate(-50%, -50%);
+    bottom: 10%;
+    right: 30%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    /* z-index: 200; */
+    height: 12.5rem;
+}
+
+/* SVG at the top right corner */
+.top-right-svg {
+    position: absolute;
+    top: 60%;
+    right: 20%;
+    width: 100%;
+    /* z-index: 200; */
+    height: 12.5rem;
 }

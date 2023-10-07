@@ -29,18 +29,33 @@
 
         <!-- svg -->
 
-        <!-- wave -->
+        <!-- svg waves at the bottom -->
         <div class="wave-container">
             <svg id="wave1" class="wave">
                 <image xlink:href="../assets/images/main/wave-1.svg" width="100%" length="auto" />
             </svg>
-            <svg class="wave">
+            <svg id="wave2" class="wave">
                 <image xlink:href="../assets/images/main/wave-2.svg" width="100%" length="auto" />
             </svg>
             <svg id="wave3" class="wave">
                 <image xlink:href="../assets/images/main/wave-3.svg" width="100%" length="auto" />
             </svg>
         </div>
+
+        <!-- svg Rocket at the bottom over the waves -->
+        <div class="bottom-svg">
+            <svg class="bottom-svg">
+                <image xlink:href="../assets/images/main/rocket.svg" width="100%" length="auto" />
+            </svg>
+        </div>
+
+        <!-- svg elippse at the top right corner -->
+        <div class="top-right-svg">
+            <svg class="bottom-svg">
+                <image xlink:href="../assets/images/main/elipsse.svg" width="100%" length="auto" />
+            </svg>
+        </div>
+
         <!-- main content -->
         <div class="content" id="content">
             <h2>Hai gia un account?</h2>

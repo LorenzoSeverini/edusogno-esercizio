@@ -71,6 +71,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
                         <?php foreach ($events as $event) : ?>
                             <div class="event">
                                 <h3><?php echo $event->event_name; ?></h3>
+                                <p><?php echo $event->description; ?></p>
                                 <p><?php echo $event->event_date; ?></p>
                                 <button class="btn">Join</button>
                             </div>

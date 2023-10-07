@@ -42,7 +42,7 @@ class AdminEventController
 
             // Store events in the array
             while ($row = $result->fetch_assoc()) {
-                $events[] = new AdminEvent($row['id'], $row['event_name'], $row['attendees'], $row['event_date']);
+                $events[] = new AdminEvent($row['id'], $row['event_name'], $row['attendees'], $row['description'], $row['event_date'],);
             }
 
             // Return the array
@@ -56,17 +56,17 @@ class AdminEventController
     // --------------------------------------
     // ADD NEW EVENT
     // --------------------------------------
-    public function addEvent($event_name, $attendees, $event_date)
+    public function addEvent($event_name, $attendees, $event_date, $description)
     {
         // Check if all required fields are not empty
-        if (empty($event_name) || empty($attendees) || empty($event_date)) {
+        if (empty($event_name) || empty($attendees) || empty($description) || empty($event_date)) {
             // Redirect with an error message if any field is empty
             header("Location: ../../views/admin/admin_dashboard.php?error=Campo Vuoto");
             return false;
         }
 
         // Insert the new event into the database
-        $sql = "INSERT INTO events (event_name, attendees, event_date, admin_access) VALUES (?, ?, ?, 1)";
+        $sql = "INSERT INTO events (event_name, attendees, event_date, description, admin_access) VALUES (?, ?, ?, ?, 1)";
 
         // Prepare the SQL statement
         $stmt = $this->conn->prepare($sql);
@@ -77,12 +77,12 @@ class AdminEventController
         }
 
         // Bind the parameters and execute the query
-        $stmt->bind_param("sss", $event_name, $attendees, $event_date);
+        $stmt->bind_param("sss", $event_name, $attendees, $description, $event_date);
 
         if ($stmt->execute()) {
             // Event added successfully
             // send email to attendees with the event details
-            $this->sendEmailToAttendees($event_name, $attendees, $event_date);
+            $this->sendEmailToAttendees($event_name, $attendees, $description, $event_date);
 
             return true;
         } else {
@@ -94,7 +94,7 @@ class AdminEventController
     // --------------------------------------
     // SEND EMAIL TO ATTENDEES
     // --------------------------------------
-    private function sendEmailToAttendees($event_name, $attendees, $event_date)
+    private function sendEmailToAttendees($event_name, $attendees, $description, $event_date)
     {
 
         // absolut path
@@ -112,6 +112,7 @@ class AdminEventController
             $body = <<<END
             <h1>Nuovo Evento</h1>
             <p>Nome dell'evento: $event_name</p>
+            <p>Descrizione dell'evento: $description</p>
             <p>Data dell'evento: $event_date</p>
             END;
         } else if (isset($_POST['updateEvent'])) {
@@ -119,6 +120,7 @@ class AdminEventController
             $body = <<<END
             <h1>Evento Modificato</h1>
             <p>Nome dell'evento: $event_name</p>
+            <p>Descrizione dell'evento: $description</p>
             <p>Data dell'evento: $event_date</p>
             END;
         }
@@ -215,7 +217,7 @@ class AdminEventController
 
             // store the event in the array
             while ($row = $result->fetch_assoc()) {
-                $event[] = new AdminEvent($row['id'], $row['event_name'], $row['attendees'], $row['event_date']);
+                $event[] = new AdminEvent($row['id'], $row['event_name'], $row['attendees'], $row['description'], $row['event_date']);
             }
 
             // return the array
@@ -229,17 +231,17 @@ class AdminEventController
     // --------------------------------------
     // UPDATE EVENT
     // --------------------------------------
-    public function updateEvent($id, $event_name, $attendees, $event_date)
+    public function updateEvent($id, $event_name, $attendees, $description, $event_date)
     {
         // Check if all required fields are not empty
-        if (empty($event_name) || empty($attendees) || empty($event_date)) {
+        if (empty($event_name) || empty($attendees) || empty($description) || empty($event_date)) {
             // Redirect with an error message if any field is empty
             header("Location: ../../views/admin/admin_dashboard.php?error=Campo Vuoto");
             return false;
         }
 
         // Update the event in the database
-        $sql = "UPDATE events SET event_name = ?, attendees = ?, event_date = ? WHERE id = ?";
+        $sql = "UPDATE events SET event_name = ?, attendees = ?, description = ?, event_date = ? WHERE id = ?";
 
         // Prepare the SQL statement
         $stmt = $this->conn->prepare($sql);
@@ -255,7 +257,7 @@ class AdminEventController
         if ($stmt->execute()) {
             // Event updated successfully
             // send email to attendees with the event details
-            $this->sendEmailToAttendees($event_name, $attendees, $event_date);
+            $this->sendEmailToAttendees($event_name, $attendees, $description, $event_date);
 
             return true;
         } else {
