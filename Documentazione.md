@@ -15,7 +15,7 @@ Il progetto è stato realizzato utilizzando PHP, per la gestione del database è
 - password: Edusogno123#
 
 
-Funzione generale del progetto: 
+## Funzione generale del progetto: 
 
 #### User 
 
@@ -53,10 +53,9 @@ Funzione generale del progetto:
 
 - Composer.json contiene la dipendenza per la gestione delle mail utlizzando PHPMailer.
 
-
 ## Struttura del database
 
-## Il database è composto da 3 tabelle: utenti, eventi e admin_privileges.
+### Il database è composto da 3 tabelle: utenti, eventi e admin_privileges.
 
 ### La tabella utenti contiene i dati degli utenti registrati al sito (nome, cognome, email, password, reset_token, reset_expires) 
 
@@ -72,7 +71,6 @@ Funzione generale del progetto:
 
 ### La tabella eventi contiene i dati degli eventi.
 
-
 - event_name è il nome dell'evento.
 
 - event_date è la data dell'evento.
@@ -81,16 +79,13 @@ Funzione generale del progetto:
 
 - admin_access è un campo booleano che indica se l'evento è visibile all admin
 
-
 ### La tabella admin_privileges contiene i dati degli admin.
 
 - user_id è un campo che fa riferimento alla tabella utenti e indica l'id dell'utente che ha i privilegi di admin.
 
+## Funzionalità del progetto
 
-## funzionalita 
-
-Log In 
-
+### Log In 
 
 - L'utente può effettuare il log in dal form di Login, inserendo la propria email e password.
 
@@ -104,7 +99,6 @@ link per il reset della password e per la registrazione
 
 ### Registrazione
 
-
 - L'utente può registrarsi al sito, inserendo nome, cognome, email e password.
 
 - Tutti i campi sono obbligatori.
@@ -116,6 +110,8 @@ link per il reset della password e per la registrazione
 - Se l'utente non esiste viene creato un nuovo utente e riceve un messaggio di conferma e puo effettuare il log in.
 
 - Se l'email e gia presente riceve un errore.
+
+- L'utente viene reindirizzato alla pagina di log in.
 
 ### Reset password
 
@@ -154,6 +150,7 @@ link per il reset della password e per la registrazione
 ### Dashboard utente
 
 - L'utente può visualizzare gli eventi a cui fa parte.
+
 - L'utente può effettuare il log out e viene reindirizzato alla pagina di log in.
 
 ### Dashboard admin
