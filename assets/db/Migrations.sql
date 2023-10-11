@@ -7,7 +7,7 @@ email varchar(255),
 password varchar(255),
 reset_token_hash varchar(64) NULL DEFAULT NULL,
 reset_token_expires_at datetime NULL DEFAULT NULL,
-Unique ('reset_token_hash');
+Unique (reset_token_hash),
 PRIMARY KEY (id)
 );
 
@@ -16,7 +16,7 @@ INSERT INTO users (name , surname, email, password) VALUES
     ('Marco', 'Rossi', 'ulysses200915@varen8.com', 'Edusogno123#'),
     ('Filippo', 'D’Amelio', 'qmonkey14@falixiao.com', 'Edusogno?123'),
     ('Gian Luca', 'Carta', 'mavbafpcmq@hitbase.net', 'EdusognoCiao1@'),
-    ('Stella', 'De Grandis', 'dgipolga@edume.me', 'EdusognoGia1#');
+    ('Stella', 'De Grandis', 'dgipolga@edume.me', 'EdusognoGia1#'),
     ('Admin', 'Admin', 'admin@esempio.com', 'Admin123#');
 
 -- table for events
@@ -31,7 +31,7 @@ PRIMARY KEY (id)
 );
 
 -- insert events
-INSERT INTO `events`(`attendees`, `event_name`, `event_date`, `description` `admin_access`) VALUES 
+INSERT INTO `events`(`attendees`, `event_name`, `event_date`, `description`, `admin_access`) VALUES 
     ('ulysses200915@varen8.com', 'Test Edusogno 1', '2022-10-13 14:00', 'Descrizione Test tecnico numero 1!', 1), 
     ('dgipolga@edume.me', 'Test Edusogno 2', '2022-10-15 19:00', 'Descrizione Test tecnico numero 2!', 1), 
     ('dgipolga@edume.me', 'Test Edusogno 3', '2022-10-15 19:00', 'Descrizione Test tecnico numero 3!', 1);
@@ -45,4 +45,4 @@ CREATE TABLE admin_privileges (
 
 -- insert admins_privileges
 INSERT INTO admin_privileges (user_id) VALUES
-    (5),
+    (5);
